@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Drawing</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+
+    <script>
+        // Get the canvas element and its 2D rendering context
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Calculate the number of circles to draw
+        const numRows = 10; // Number of rows
+        const numCols = 10; // Number of columns
+        const circleSize = 30; // Diameter of each circle
+
+        // Function to draw the diagonal pattern of circles
+        function drawCircles() {
+            // Loop through each row
+            for (let i = 0; i < numRows; i++) {
+                // Loop through each column
+                for (let j = 0; j < numCols; j++) {
+                    // Calculate the position of each circle
+                    const x = j * circleSize;
+                    const y = i * circleSize;
+
+                    // Alternate between white and black circles based on row index
+                    if ((i + j) % 2 === 0) {
+                        ctx.fillStyle = '#ffffff'; // White color
+                    } else {
+                        ctx.fillStyle = '#000000'; // Black color
+                    }
+
+                    // Draw the circle
+                    ctx.beginPath();
+                    ctx.arc(x + circleSize / 2, y + circleSize / 2, circleSize / 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        // Call the drawCircles function
+        drawCircles();
+    </script>
+</body>
+</html>
